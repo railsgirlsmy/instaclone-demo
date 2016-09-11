@@ -1,15 +1,18 @@
-<%= form_for @photo do |f| %>
-  <p>
-    <%= f.label :file %><br>
-    <%= f.file_field :file %>
-  </p>
+<div class="form-wrapper">
+  <%= form_for @photo, html: { class: 'form-horizontal', multipart: true } do |f| %>
 
-  <p>
-    <%= f.label :caption %><br>
-    <%= f.text_field :caption %>
-  </p>
+    <div class="form-group">
+      <%= f.label :file %><br>
+      <%= f.file_field :file, class: "form-control" %>
+    </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+    <div class="form-group text-center">
+      <%= f.label :caption %><br>
+      <%= f.text_field :caption, class: "form-control" %>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit class: "btn btn-success btn-block" %>
+    </div>
+  <% end %>
+</div>
