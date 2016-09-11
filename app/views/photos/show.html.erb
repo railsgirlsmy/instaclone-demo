@@ -1,2 +1,2 @@
-<%= link_to @photo.file %>
+<%= image_tag(@photo.file_url, width: 600) if @photo.file.present? %> 
 <h3><%= @photo.caption %></h3>
