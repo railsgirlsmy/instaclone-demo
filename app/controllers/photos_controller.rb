@@ -1,4 +1,8 @@
 class PhotosController < ApplicationController
+  def index
+    @photos = Photo.order(created_at: :desc)
+  end
+
   def new
     @photo = Photo.new
   end

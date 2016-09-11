@@ -1,0 +1,12 @@
+<h1>All Photos</h1>
+<% if @photos.any? %>
+  <% @photos.each do |photo| %>
+    <p>
+      <%= image_tag(photo.file_url, width: 300) if photo.file.present? %>
+      <%= photo.caption %>
+    </p>
+  <% end  %>
+<% else  %>
+  <p>No photos found.</p>
+<% end %>
+<p><%= link_to "New Photo", new_photo_path %></p>
