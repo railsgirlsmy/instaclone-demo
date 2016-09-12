@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @photos = Photo.order(created_at: :desc)
   end
@@ -8,7 +10,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(photo_params)
+    @photo = current_user.photos.new(photo_params)
     if @photo.save
       redirect_to photo_path(@photo)
     else

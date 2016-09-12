@@ -23,11 +23,24 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "New Photo", new_photo_path %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li><%= link_to "#{current_user.email}, logout?", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to "Login", new_user_session_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>
     </nav>
     <section class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </section>
   </body>
